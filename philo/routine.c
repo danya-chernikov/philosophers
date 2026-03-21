@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 12:47:27 by dchernik          #+#    #+#             */
-/*   Updated: 2026/03/21 15:39:09 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/03/21 18:13:21 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 #include <unistd.h>
 
+/* Here we do a delay for even philosophers
+ * to reduce initial fork competition */
 void	*philo_routine(void *arg)
 {
 	t_philo	*p;

@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 19:11:16 by dchernik          #+#    #+#             */
-/*   Updated: 2026/03/21 15:47:34 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/03/21 18:17:35 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	print_usage(char *prog)
 	ft_strlcat(errbuf, " number_of_philosophers ", MAX_ERRBUF);
 	ft_strlcat(errbuf, "time_to_die time_to_eat time_to_sleep", MAX_ERRBUF);
 	ft_strlcat(errbuf, " [number_of_times_each", MAX_ERRBUF);
-	ft_strlcat(errbuf, "_philosopher_must_eat]", MAX_ERRBUF);
+	ft_strlcat(errbuf, "_philosopher_must_eat]\n", MAX_ERRBUF);
 	write(STDERR_FILENO, errbuf, ft_strlen(errbuf));
 	return (COMMON_FAILURE);
 }

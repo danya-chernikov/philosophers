@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 12:47:28 by dchernik          #+#    #+#             */
-/*   Updated: 2026/03/21 15:54:52 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/03/21 18:15:30 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ static bool	everyone_ate(t_rules *r)
 	{
 		pthread_mutex_lock(&r->philos[i].meal_mtx);
 		if (r->philos[i].meals_eaten < r->ntimes_each_must_eat)
-			return (pthread_mutex_unlock(&r->philos[i++].meal_mtx), false);
+		{
+			pthread_mutex_unlock(&r->philos[i].meal_mtx);
+			return (false);
+		}
 		pthread_mutex_unlock(&r->philos[i].meal_mtx);
 		++i;
 	}
