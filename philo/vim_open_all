@@ -1,0 +1,1 @@
+philo.h main.c init.c init2.c parse.c start.c routine.c monitor.c actions.c cleanup.c state.c time.c Makefile
