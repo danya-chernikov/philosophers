@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 12:47:31 by dchernik          #+#    #+#             */
-/*   Updated: 2026/03/21 15:55:16 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/03/21 21:00:55 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	cleanup_rules(t_rules *r)
 	}
 	pthread_mutex_destroy(&r->print_mtx);
 	pthread_mutex_destroy(&r->stop_mtx);
+	pthread_mutex_destroy(&r->full_mtx);
 	free(r->forks);
 	free(r->philos);
 }
