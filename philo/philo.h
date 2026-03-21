@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 12:43:06 by dchernik          #+#    #+#             */
-/*   Updated: 2026/03/21 15:50:37 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/03/21 20:54:48 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_philo
 	int				id;
 	int				meals_eaten;
 	long			last_meal_ms;
+	bool			f_is_full;
 	pthread_t		thread;
 	pthread_mutex_t	meal_mtx;
 	pthread_mutex_t	*left_fork;
@@ -49,7 +50,8 @@ typedef struct s_philo
  *				    time in milliseconds;
  *     f_sim_stop - simulation stop flag.
  *					0 - simulation continues,
- *					1 - simulation should be stopped */
+ *					1 - simulation should be stopped;
+ *     full_count - how many philosophers are already full */
 typedef struct s_rules
 {
 	int				num_philo;
@@ -58,8 +60,10 @@ typedef struct s_rules
 	long			time_to_sleep;
 	long			ntimes_each_must_eat;
 	long			start_ms;
+	int				full_count;
 	bool			f_sim_stop;
 	pthread_t		monitor;
+	pthread_mutex_t	full_mtx;
 	pthread_mutex_t	stop_mtx;
 	pthread_mutex_t	print_mtx;
 	pthread_mutex_t	*forks;

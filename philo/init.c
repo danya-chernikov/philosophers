@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 12:47:21 by dchernik          #+#    #+#             */
-/*   Updated: 2026/03/21 15:50:37 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/03/21 21:10:48 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_args(t_rules *r, int argc, char **argv)
 		return (COMMON_FAILURE);
 	if (argc == 6)
 	{
-		r->ntimes_each_must_eat = atoi(argv[5]);
+		r->ntimes_each_must_eat = ft_atoi(argv[5]);
 		if (r->ntimes_each_must_eat <= 0)
 			return (COMMON_FAILURE);
 	}
@@ -44,6 +44,7 @@ void	assign_philo_ids(t_rules *r)
 		r->philos[pi].id = pi + 1;
 		r->philos[pi].meals_eaten = 0;
 		r->philos[pi].last_meal_ms = 0;
+		r->philos[pi].f_is_full = false;
 		r->philos[pi].rules = r;
 		r->philos[pi].left_fork = &r->forks[pi];
 		r->philos[pi].right_fork = &r->forks[(pi + 1) % r->num_philo];
@@ -58,6 +59,7 @@ void	init_defaults(t_rules *r)
 	r->f_sim_stop = false;
 	r->ntimes_each_must_eat = -1;
 	r->start_ms = 0;
+	r->full_count = 0;
 }
 
 int	alloc_data(t_rules *r)

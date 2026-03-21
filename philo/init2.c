@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 13:12:29 by dchernik          #+#    #+#             */
-/*   Updated: 2026/03/21 15:54:18 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/03/21 21:00:02 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ int	init_mutexes(t_rules *r)
 		return (mutex_fail());
 	if (pthread_mutex_init(&r->print_mtx, NULL) != 0)
 		return (pthread_mutex_destroy(&r->stop_mtx), mutex_fail());
+	if (pthread_mutex_init(&r->full_mtx, NULL) != 0)
+	{
+		pthread_mutex_destroy(&r->print_mtx);
+		pthread_mutex_destroy(&r->stop_mtx);
+		return (mutex_fail());
+	}
 	i = 0;
 	while (i < r->num_philo)
 		if (pthread_mutex_init(&r->forks[i++], NULL) != 0)
@@ -67,6 +73,7 @@ static int	fail_forks(t_rules *r, int i)
 		pthread_mutex_destroy(&r->forks[i]);
 	pthread_mutex_destroy(&r->print_mtx);
 	pthread_mutex_destroy(&r->stop_mtx);
+	pthread_mutex_destroy(&r->full_mtx);
 	return (mutex_fail());
 }
 
@@ -79,5 +86,6 @@ static int	fail_meals(t_rules *r, int i)
 		pthread_mutex_destroy(&r->forks[i]);
 	pthread_mutex_destroy(&r->print_mtx);
 	pthread_mutex_destroy(&r->stop_mtx);
+	pthread_mutex_destroy(&r->full_mtx);
 	return (mutex_fail());
 }
