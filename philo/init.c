@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 12:47:21 by dchernik          #+#    #+#             */
-/*   Updated: 2026/03/21 21:10:48 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/03/22 16:37:25 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int	alloc_data(t_rules *r)
 	r->philos = (t_philo *)malloc(r->num_philo * sizeof (t_philo));
 	if (!r->philos)
 		return (write(2, MALLOC_ERR, ft_strlen(MALLOC_ERR)), COMMON_SYS_ERR);
-	r->forks =
-		(pthread_mutex_t *)malloc(r->num_philo * sizeof (pthread_mutex_t));
+	r->forks
+		= (pthread_mutex_t *)malloc(r->num_philo * sizeof (pthread_mutex_t));
 	if (!r->forks)
 	{
 		write(STDERR_FILENO, MALLOC_ERR, ft_strlen(MALLOC_ERR));

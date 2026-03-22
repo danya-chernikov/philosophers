@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 12:47:25 by dchernik          #+#    #+#             */
-/*   Updated: 2026/03/21 15:54:41 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/03/22 16:37:50 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	create_philos(t_rules *r)
 	while (i < r->num_philo)
 	{
 		if (pthread_create(&r->philos[i].thread, NULL,
-			philo_routine, &r->philos[i]) != 0)
+				philo_routine, &r->philos[i]) != 0)
 		{
 			write(STDERR_FILENO, CREATE_TH_ERR, ft_strlen(CREATE_TH_ERR));
 			set_sim_stop_flag(r, true);
