@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 12:47:30 by dchernik          #+#    #+#             */
-/*   Updated: 2026/03/21 21:11:10 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:58:45 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ void	eat_action(t_philo *p)
 	pthread_mutex_lock(&p->meal_mtx);
 	p->last_meal_ms = now_ms();
 	++p->meals_eaten;
-	update_full_state(p);
 	pthread_mutex_unlock(&p->meal_mtx);
 	print_status(p, "is eating");
+	pthread_mutex_lock(&p->meal_mtx);
+	update_full_state(p);
+	pthread_mutex_unlock(&p->meal_mtx);
 	smart_sleep(p->rules, p->rules->time_to_eat);
 	unlock_forks(p);
 }
